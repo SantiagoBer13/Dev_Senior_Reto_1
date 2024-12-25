@@ -65,4 +65,14 @@ public class App {
 
     
   }
+
+  public static void showMenu() {
+    System.out.println("==============================");
+    System.out.println("      MENU PRINCIPAL");
+    System.out.println("==============================");
+    System.out.println("1. Seleccionar un planeta de destino.");
+    System.out.println("2. Seleccionar una nave espacial.");
+    System.out.println("3. Iniciar simulacion de viaje.");
+    System.out.println("4. Salir.");
+  }
 }
