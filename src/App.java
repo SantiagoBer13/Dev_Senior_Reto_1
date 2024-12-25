@@ -141,4 +141,32 @@ public class App {
     Double oxygenConsumption = time * passagers * 1.0; // 1 kg de oxigeno por hora por pasajero
     System.out.printf("Se consumiran %.2f kg de oxigeno en el viaje.%n", oxygenConsumption);
   }
+
+  public static void simulateTrip() {
+    Random rm = new Random();
+    System.out.println("\n========== INICIANDO VIAJE ==========");
+    System.out.printf("Distancia inicial al destino: %.2f millones de kilómetros.%n", distancePlanetSelected);
+    System.out.printf("Tiempo estimado: %.2f días.%n", timeEstimated);
+    for (int i = 0; i < distancePlanetSelected; i++) {
+      timeEstimated = ((distancePlanetSelected - i) * 1000000 / shipSpeeds.get(shipSelected)) / 3600 / 24; 
+      if (rm.nextInt(10) == 1) {
+        Double percentage = (100 / distancePlanetSelected) * (i);
+        System.out.printf("Progreso del viaje: %.2f%% completado.%n", percentage);
+        System.out.printf("Tiempo estimado restante: %.2f días.%n", timeEstimated);
+      }
+      if (rm.nextInt(50) == 1) {
+        System.out.println("El viaje puede presentar problemas, soluciona el problema con el juego.");
+        boolean decision = HangMan.game();
+        if (decision) {
+          System.out.println("Lograste solucionar los problemas.");
+        } else {
+          System.out.println(
+              "No lograste solucionar los problemas. El viaje ha sufrido un desvío y la distancia al planeta se ha extendido a 5 millones de kilómetros.");
+          distancePlanetSelected += 50;
+          System.out.printf("Distancia al destino: %.2f millones de kilómetros.%n", distancePlanetSelected - i);
+        }
+      }
+    }
+    System.out.printf("\n¡Llegada exitosa a %s!%n", planetSelected);
+  }
 }
