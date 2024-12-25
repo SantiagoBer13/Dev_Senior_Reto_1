@@ -75,4 +75,22 @@ public class App {
     System.out.println("3. Iniciar simulacion de viaje.");
     System.out.println("4. Salir.");
   }
+
+  public static void selectPlanet() {
+    System.out.println("\n========== SELECCION DE UN PLANETA ==========");
+    int i = 0;
+    for (Map.Entry<String, Double> planet : distancePlanets.entrySet()) {
+      System.out.printf("%d) Planeta: %-10s | Distancia: %8.2f millones de kilometros.%n", i + 1, planet.getKey(),
+          planet.getValue());
+      i++;
+    }
+    System.out.print("Selecciona un planeta: ");
+    int selection = Integer.parseInt(sc.nextLine());
+    if (selection > 0 && selection <= planets.length) {
+      System.out.printf("\nHas seleccionado el planeta: %s.%n", planets[selection - 1]);
+      planetSelected = planets[selection - 1];
+    } else {
+      System.out.println("\n[Error] Seleccion invalida. Intenta de nuevo.");
+    }
+  }
 }
