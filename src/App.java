@@ -118,4 +118,10 @@ public class App {
       System.out.println("\n[Error] Seleccion invalida. Intenta de nuevo.");
     }
   }
+
+  public static void calculateDistance() {
+    distancePlanetSelected = distancePlanets.get(planetSelected);
+    System.out.printf("\nLa distancia de la Tierra a %s es de %.2f millones de kilometros.%n", planetSelected,
+        distancePlanetSelected);
+  }
 }
