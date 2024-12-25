@@ -93,4 +93,29 @@ public class App {
       System.out.println("\n[Error] Seleccion invalida. Intenta de nuevo.");
     }
   }
+
+  public static void selectShip() {
+    System.out.println("\n========== SELECCION DE UNA NAVE ==========");
+    for (int i = 0; i < ships.length; i++) {
+      System.out.printf("%d) Nave: %s%n", i + 1, ships[i]);
+    }
+    System.out.print("Selecciona una nave: ");
+    int selection = Integer.parseInt(sc.nextLine());
+    if (selection > 0 && selection <= ships.length) {
+      shipSelected = ships[selection - 1];
+      System.out.printf("\nHas seleccionado la nave: %s.%n", shipSelected);
+      int maxPassagers;
+      do {
+        maxPassagers = shipPassagersCount.get(shipSelected);
+        System.out.printf("Esta nave tiene capacidad maxima de %d pasajeros.%n", maxPassagers);
+        System.out.print("Ingresa la cantidad de pasajeros: ");
+        passagers = Integer.parseInt(sc.nextLine());
+        if (passagers < 0 || passagers > maxPassagers) {
+          System.out.println("\n[Error] Ingresa un numero valido de pasajeros.");
+        }
+      } while (passagers < 0 || passagers > maxPassagers);
+    } else {
+      System.out.println("\n[Error] Seleccion invalida. Intenta de nuevo.");
+    }
+  }
 }
