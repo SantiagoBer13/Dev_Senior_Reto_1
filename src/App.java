@@ -63,7 +63,37 @@ public class App {
     shipPassagersCount.put("Lunar Explorer", 300);
     shipPassagersCount.put("Nebula Rider", 50);
 
-    
+    int option;
+    do {
+      showMenu();
+      System.out.print("\nIngresa una opcion: ");
+      option = Integer.parseInt(sc.nextLine());
+      switch (option) {
+        case 1:
+          selectPlanet();
+          break;
+        case 2:
+          selectShip();
+          break;
+        case 3:
+          if (planetSelected == null || shipSelected == null) {
+            System.out.println("\n[Error] Por favor selecciona un planeta y una nave antes de iniciar la simulacion.");
+          } else {
+            calculateDistance();
+            calculateTimeTrip();
+            calculateFuel();
+            calculateOxigen();
+            simulateTrip();
+          }
+          break;
+        case 4:
+          System.out.println("\nSaliendo del sistema. Adios!");
+          break;
+        default:
+          System.out.println("\n[Error] Opcion invalida. Intenta de nuevo.");
+          break;
+      }
+    } while (option != 4);
   }
 
   public static void showMenu() {
