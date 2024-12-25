@@ -46,4 +46,23 @@ public class App {
   static Double distancePlanetSelected, timeEstimated;
   static int passagers;
 
+  public static void main(String[] args) throws Exception {
+
+    distancePlanets.put("Mercurio", 91.7);
+    distancePlanets.put("Venus", 41.4);
+    distancePlanets.put("Tierra", 0.0);
+    distancePlanets.put("Marte", 78.3);
+    distancePlanets.put("Jupiter", 628.7);
+    distancePlanets.put("Saturno", 1277.4);
+    distancePlanets.put("Urano", 2721.8);
+    distancePlanets.put("Neptuno", 4353.0);
+    shipPassagersCount.put("Voyager-1", 150);
+    shipPassagersCount.put("Enterprise-X", 80);
+    shipPassagersCount.put("Solar Wind", 200);
+    shipPassagersCount.put("Starlight Cruiser", 120);
+    shipPassagersCount.put("Lunar Explorer", 300);
+    shipPassagersCount.put("Nebula Rider", 50);
+
+    
+  }
 }
