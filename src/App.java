@@ -124,4 +124,9 @@ public class App {
     System.out.printf("\nLa distancia de la Tierra a %s es de %.2f millones de kilometros.%n", planetSelected,
         distancePlanetSelected);
   }
+
+  public static void calculateTimeTrip() {
+    timeEstimated = (distancePlanetSelected * 1000000 / shipSpeeds.get(shipSelected)) / 3600 / 24;
+    System.out.printf("Con la nave %s se demora aproximadamente %.2f días.%n", shipSelected, timeEstimated);
+  }
 }
