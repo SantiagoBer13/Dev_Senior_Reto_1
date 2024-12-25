@@ -135,4 +135,10 @@ public class App {
     Double fuelConsumption = time * passagers * 0.5; // 0.5 litros por hora por pasajero
     System.out.printf("Se consumiran %.2f litros de combustible en el viaje.%n", fuelConsumption);
   }
+
+  public static void calculateOxigen() {
+    Double time = (distancePlanetSelected * 1000000 / shipSpeeds.get(shipSelected)) / 3600;
+    Double oxygenConsumption = time * passagers * 1.0; // 1 kg de oxigeno por hora por pasajero
+    System.out.printf("Se consumiran %.2f kg de oxigeno en el viaje.%n", oxygenConsumption);
+  }
 }
