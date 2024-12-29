@@ -206,7 +206,8 @@ public class App {
     System.out.printf("Tiempo estimado: %.2f días.%n", timeEstimated);
 
     double remainingDistance = distancePlanetSelected; // Distancia restante en millones de km
-
+    double lastReportedProgress = 0; // Último porcentaje reportado
+    
     while (remainingDistance > 0) {
       // Consumo de combustible por millón de km
       double fuelWasted = ((1 * 1000000 / shipSpeeds.get(shipSelected)) / 3600) * fuelRates.get(shipSelected);
@@ -219,11 +220,12 @@ public class App {
       // Recalcular tiempo estimado restante
       timeEstimated = (remainingDistance * 1000000 / shipSpeeds.get(shipSelected)) / 3600 / 24;
 
-      // Progreso aleatorio
-      if (rm.nextInt(10) == 1) {
-        double percentage = ((distancePlanetSelected - remainingDistance) / distancePlanetSelected) * 100;
-        System.out.printf("Progreso del viaje: %.2f%% completado.%n", percentage);
-        System.out.printf("Tiempo estimado restante: %.2f días.%n", timeEstimated);
+      // Calcular progreso del viaje
+      double percentageCompleted = ((distancePlanetSelected - remainingDistance) / distancePlanetSelected) * 100;
+      if (percentageCompleted - lastReportedProgress >= 10) { // Mostrar cada 10%
+          System.out.printf("Progreso del viaje: %.2f%% completado.%n", percentageCompleted);
+          System.out.printf("Tiempo estimado restante: %.2f días.%n", timeEstimated);
+          lastReportedProgress = percentageCompleted; // Actualizar el progreso reportado
       }
 
       // Posibles problemas en el viaje
@@ -235,13 +237,13 @@ public class App {
             System.out.println("Problema resuelto con éxito. Continuando el viaje.");
         } else {
             remainingDistance += 5;
-            System.out.printf("\nEl viaje se ha desviado. Nueva distancia al destino: %.2f millones de kilómetros%n", remainingDistance);
+            System.out.printf("\nEl viaje se ha desviado. La distancia ha aumentado 5 millones de kilómetros. Nueva distancia al destino: %.2f millones de kilómetros%n", remainingDistance);
         }
     }
 
       remainingDistance -= 1; // Avanza 1 millón de km
       // Verificar combustible
-      if (fuelSelected <= 0) {
+      if (fuelSelected < 0) {
         System.out.println("\nSe ha acabado el combustible. El viaje no puede continuar.");
         System.out.println("Fin del viaje. Llegada no exitosa.");
         return;
